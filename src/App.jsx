@@ -24,7 +24,7 @@ function App() {
   if (errors) {
     return (
       <Layout>
-        <span>Something when wrong while fetching the data.</span>
+        <span>Something went wrong while fetching the data.</span>
       </Layout>
     )
   }
