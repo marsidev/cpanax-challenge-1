@@ -1,7 +1,3 @@
 {
-  "extends": "@antfu",
-	"rules": {
-		"no-console": "off",
-		"jsx-quotes": ["warn", "prefer-single"]
-	}
+  "extends": ["marsi/react"]
 }

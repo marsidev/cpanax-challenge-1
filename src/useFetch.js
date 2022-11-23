@@ -1,29 +1,32 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export const useFetch = () => {
-  const [loading, setLoading] = useState()
-  const [data, setData] = useState()
-  const [errors, setErrors] = useState(false)
+export const useFetch = page => {
+	const [loading, setLoading] = useState()
+	const [data, setData] = useState()
+	const [errors, setErrors] = useState(false)
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true)
-      axios
-        .get('https://dummyjson.com/products')
-        .then((res) => {
-          setData(res.data)
-          setErrors(false)
-        })
-        .catch((error) => {
-          console.error(error)
-          setErrors(true)
-        })
-        .finally(() => setLoading(false))
-    }
+	useEffect(() => {
+		async function fetchData () {
+			const skip = (page - 1) * 16
+			const url = `https://dummyjson.com/products?skip=${skip}&limit=16`
+			setLoading(true)
 
-    fetchData()
-  }, [])
+			axios
+				.get(url)
+				.then(res => {
+					setData(res.data)
+					setErrors(false)
+				})
+				.catch(error => {
+					console.error(error)
+					setErrors(true)
+				})
+				.finally(() => setLoading(false))
+		}
 
-  return { loading, data, errors }
+		if (page) fetchData()
+	}, [page])
+
+	return { loading, data, errors }
 }
