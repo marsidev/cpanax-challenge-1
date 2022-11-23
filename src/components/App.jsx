@@ -1,10 +1,10 @@
 import { useState } from 'react'
+import { useFetch } from '../hooks/useFetch'
+import { usePagination } from '../hooks/usePagination'
 import Card from './Card'
 import Layout from './Layout'
 import Form from './Form'
-import { useFetch } from './useFetch'
-import { usePagination } from './usePagination'
-import Pagination from './components/Pagination'
+import Pagination from './Pagination'
 
 function App() {
 	const [rows, setRows] = useState(4)
